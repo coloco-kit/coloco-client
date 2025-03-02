@@ -1,0 +1,36 @@
+{
+  "name": "@coloco/api-client",
+  "version": "0.1.0",
+  "description": "A client for interacting with Coloco APIs",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "api",
+    "client",
+    "coloco"
+  ],
+  "author": "Coloco Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/channelcat/coloco-client.git",
+    "directory": "packages/api-client"
+  },
+  "dependencies": {
+    "@hey-api/openapi-ts": "^0.64.8"
+  }
+}

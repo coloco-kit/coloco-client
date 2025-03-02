@@ -1,0 +1,35 @@
+{
+  "name": "@coloco/router",
+  "version": "0.1.0",
+  "description": "A routing library for Coloco applications",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "router",
+    "coloco"
+  ],
+  "author": "Coloco Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/channelcat/coloco-client.git",
+    "directory": "packages/router"
+  },
+  "dependencies": {
+    "@mateothegreat/svelte5-router": "^2.2.7"
+  }
+}
