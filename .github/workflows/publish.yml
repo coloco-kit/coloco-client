@@ -41,7 +41,7 @@ jobs:
           
       - name: Publish API Client Package
         if: success()
-        working-directory: packages/api-client
+        working-directory: packages/api-client-svelte
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 

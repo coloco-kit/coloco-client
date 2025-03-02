@@ -1,5 +1,5 @@
 {
-  "name": "@coloco/api-client",
+  "name": "@coloco/api-client-svelte",
   "version": "0.1.0",
   "description": "A client for interacting with Coloco APIs",
   "main": "dist/index.js",
@@ -28,9 +28,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/channelcat/coloco-client.git",
-    "directory": "packages/api-client"
+    "directory": "packages/api-client-svelte"
   },
   "dependencies": {
+    "@hey-api/client-fetch": "^0.8.2",
     "@hey-api/openapi-ts": "^0.64.8"
   }
 }

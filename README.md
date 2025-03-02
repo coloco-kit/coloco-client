@@ -3,7 +3,7 @@
 This monorepo contains the following npm packages:
 
 - `@coloco/router`: A routing library for Coloco applications
-- `@coloco/api-client`: A client for interacting with Coloco APIs
+- `@coloco/api-client-svelte`: A client for interacting with Coloco APIs
 
 ## Development
 

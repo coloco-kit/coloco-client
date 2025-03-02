@@ -1,17 +1,17 @@
-# @coloco/api-client
+# @coloco/api-client-svelte
 
 A client for interacting with Coloco APIs.
 
 ## Installation
 
 ```bash
-npm install @coloco/api-client
+npm install @coloco/api-client-svelte
 ```
 
 ## Usage
 
 ```typescript
-import { ApiClient } from '@coloco/api-client';
+import { ApiClient } from '@coloco/api-client-svelte';
 
 // Create an API client instance
 const apiClient = new ApiClient({

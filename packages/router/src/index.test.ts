@@ -1,6 +1,6 @@
-import { ApiClient } from './index';
+import { getRoutes } from './index';
 
-describe('ApiClient', () => {
+describe('getRoutes', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
