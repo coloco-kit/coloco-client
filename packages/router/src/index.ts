@@ -2,7 +2,8 @@
  * @coloco/router - A routing library for Coloco applications
  */
 
-import type { Route } from "@mateothegreat/svelte5-router/index";
+// @ts-ignore
+import type { Route } from "@mateothegreat/svelte5-router";
 import type { Component, Snippet } from "svelte";
 
 function getRoutesFromModules(modules: Record<string, any>) {
@@ -54,5 +55,6 @@ function getRoutes({
   ];
 }
 
-export { route, Router, type Route } from "@mateothegreat/svelte5-router/index";
+// @ts-ignore
+export { route, Router, type Route } from "@mateothegreat/svelte5-router";
 export { getRoutes }; 
