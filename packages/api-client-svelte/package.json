@@ -1,6 +1,6 @@
 {
   "name": "@coloco/api-client-svelte",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A client for interacting with Coloco APIs",
   "main": "dist/index.js",
   "module": "dist/index.js",

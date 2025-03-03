@@ -18,7 +18,7 @@ function getRoutesFromModules(modules: Record<string, any>) {
       }
     }
 
-    const uri = "^/" + path
+    const uri = "^" + path
       .replace(/^(..\/)+/, '')
       .replace(/^\.\.\/(.+)$/, '$1')
       .replace(/^(.+)\/index\.svelte$/, '$1')
@@ -43,7 +43,7 @@ function getRoutes({
   );
   return [
     {
-      path: "^/$",
+      path: "^$",
       component: index,
     },
     ...getRoutesFromModules(modules),

@@ -26,7 +26,7 @@ export const handler: Plugin.Handler<Config> = ({ context, plugin }) => {
       fs.writeFileSync(
         outputPath,
         `import { ${operations.join(', ')} } from "${importRelative}/sdk.gen";\n` +
-        `import { apiCall } from "@coloco/client";\n` +
+        `import { apiCall } from "@coloco/api-client-svelte";\n` +
         operations.map(operation => `const ${operation}Wrapped = apiCall(${operation});\n`).join('') +
         `export { ${operations.map(operation => `${operation}Wrapped as ${operation}`).join(', ')} };`
       );
