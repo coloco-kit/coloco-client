@@ -4,7 +4,6 @@
 
 // @ts-ignore
 import type { Route } from "@mateothegreat/svelte5-router";
-import type { Component, Snippet } from "svelte";
 
 function getRoutesFromModules(modules: Record<string, any>) {
   const routes = [];
@@ -19,39 +18,40 @@ function getRoutesFromModules(modules: Record<string, any>) {
       }
     }
 
-    const uri = "^" + path
+    const uri = new RegExp("^/" + path
       .replace(/^(..\/)+/, '')
       .replace(/^\.\.\/(.+)$/, '$1')
       .replace(/^(.+)\/index\.svelte$/, '$1')
-      .replace(/^(.+)\.svelte$/, '$1') + "$";
+      .replace(/^(.+)\.svelte$/, '$1') + "$");
     routes.push({ path: uri, component: module.default });
   }
   return routes;
 }
 
+type PathType = string | number | RegExp | Function | Promise<unknown>;
 function getRoutes({
   index,
   notFound
 }: {
-  index: Component<any> | Snippet,
-  notFound: Component<any> | Snippet
+  index: PathType,
+  notFound: PathType
 }): Route[] {
   // path join
   // @ts-ignore
   const modules: Record<string, any> = import.meta.glob(
-    [`/../**/*.svelte`, "!/../node_modules/**/*.svelte", "!/../+**/*.svelte"],
+    [`/../**/*.svelte`, "!/../node_modules/**/*.svelte", "!/../+**/*.svelte", "!./**/*.svelte"],
     { eager: true },
   );
   return [
     {
-      path: "^$",
+      path: /.+/,
+      component: notFound,
+    },
+    {
+      name: "Index",
       component: index,
     },
     ...getRoutesFromModules(modules),
-    {
-      path: ".+",
-      component: notFound,
-    },
   ];
 }
 
