@@ -10,6 +10,12 @@ export interface Config {
    */
   output?: string;
   /**
+   * Name of the generated file.
+   *
+   * @default 'coloco-codegen'
+   */
+  paramStyle?: 'rest' | 'flat';
+  /**
    * Path to the output directory.
    *
    * @default './api'

@@ -10,6 +10,7 @@ export const defaultConfig: Plugin.Config<Config> = {
   name: 'coloco-codegen',
   output: 'coloco-codegen',
   outputPath: './api',
+  paramStyle: 'flat',
 };
 
 export const defineConfig: Plugin.DefineConfig<Config> = (config) => ({
