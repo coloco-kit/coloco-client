@@ -2,10 +2,12 @@ import type { Plugin } from '@hey-api/openapi-ts';
 import type { Config } from './types';
 import fs from 'fs';
 import path from 'path';
-
+import process from 'node:process';
 export const handler: Plugin.Handler<Config> = ({ context, plugin }) => {
   const operationsByPath: Record<string, string[]> = {};
   const mappingsByOperation: Record<string, Record<string, "body" | "query" | "path">> = {};
+  const baseFunctionName = plugin.baseFunctionName ? plugin.baseFunctionName : (name: string) => `_${name}Request`;
+  const functionName = plugin.functionName ? plugin.functionName : (name: string) => name;
 
   // Collect all reference types
   const refs: any = {};
@@ -59,14 +61,20 @@ export const handler: Plugin.Handler<Config> = ({ context, plugin }) => {
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
       fs.writeFileSync(
         outputPath,
-        `import { ${operations.join(', ')} } from "${importRelative}/sdk.gen";\n` +
-        `import { ${plugin.paramStyle === "flat" ? 'apiCallFlat' : 'apiCallRest'} } from "@coloco/api-client-svelte";\n` +
+        `import { ${operations.map(baseFunctionName).join(', ')} } from "${importRelative}/sdk.gen";\n` +
+        `import { ${plugin.paramStyle === "flat" ? 'apiCallFlat' : 'apiCallRest'} } from "@coloco/api-client-svelte";\n\n` +
         operations.map(operation => plugin.paramStyle === "flat" ? 
-            `const ${operation}Wrapped = apiCallFlat(${operation}, ${JSON.stringify(mappingsByOperation[operation])})\n` : 
-            `const ${operation}Wrapped = apiCallRest(${operation})\n`
-        ).join('') +
-        `export { ${operations.map(operation => `${operation}Wrapped as ${operation}`).join(', ')} };`
+            `export const ${functionName(operation)} = apiCallFlat(${baseFunctionName(operation)}, ${JSON.stringify(mappingsByOperation[operation])});\n` : 
+            `export const ${functionName(operation)} = apiCallRest(${baseFunctionName(operation)}));\n`
+        ).join('')
       );
     }
+  });
+  // Super hacky way to rename the generated functions
+  process.on('beforeExit', (code: any) => {
+    // Update the sdk.gen file
+    const sdkPath = path.join(context.config.output.path, 'sdk.gen.ts');
+    const sdk = fs.readFileSync(sdkPath, 'utf8');
+    fs.writeFileSync(sdkPath, sdk.replace(/export const (.+?) =/g, (_, match) => `export const ${baseFunctionName(match)} =`));
   });
 };

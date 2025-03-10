@@ -11,6 +11,8 @@ export const defaultConfig: Plugin.Config<Config> = {
   output: 'coloco-codegen',
   outputPath: './api',
   paramStyle: 'flat',
+  baseFunctionName: (name: string) => `_${name}Request`,
+  functionName: (name: string) => name,
 };
 
 export const defineConfig: Plugin.DefineConfig<Config> = (config) => ({

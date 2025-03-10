@@ -21,4 +21,9 @@ export interface Config {
    * @default './api'
    */
   outputPath?: string;
+
+
+  // Override the default function names
+  baseFunctionName?: (name: string) => string;
+  functionName?: (name: string) => string;
 }
