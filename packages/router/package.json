@@ -1,6 +1,6 @@
 {
   "name": "@coloco/router",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A routing library for Coloco applications",
   "main": "dist/index.js",
   "module": "dist/index.js",

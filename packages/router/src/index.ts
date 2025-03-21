@@ -9,10 +9,10 @@ function getRoutesFromModules(modules: Record<string, any>) {
   const routes = [];
   for (let [path, module] of Object.entries(modules)) {
     // Dev only paths
-    if (path.includes('-')) {
+    if (path.includes('/-')) {
       // @ts-ignore
       if (import.meta.env.DEV) {
-        path = path.replace('-', '');
+        path = path.replace('/-', '/');
       } else {
         continue;
       }
@@ -39,7 +39,13 @@ function getRoutes({
   // path join
   // @ts-ignore
   const modules: Record<string, any> = import.meta.glob(
-    [`/../**/*.svelte`, "!/../node_modules/**/*.svelte", "!/../+**/*.svelte", "!./**/*.svelte"],
+    [
+      "/../**/*.svelte", 
+      "!/../node_modules/**/*.svelte",
+      "!/../+**/*.svelte", 
+      "!./**/*.svelte", 
+      "!/**/*.svelte"
+    ],
     { eager: true },
   );
   return [
