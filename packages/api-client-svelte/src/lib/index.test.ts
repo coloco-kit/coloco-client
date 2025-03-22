@@ -1,4 +1,4 @@
-import { ApiClient } from './index';
+import { apiCallFlat } from './index';
 
 describe('ApiClient', () => {
   beforeEach(() => {

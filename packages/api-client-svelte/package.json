@@ -1,6 +1,6 @@
 {
   "name": "@coloco/api-client-svelte",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A client for interacting with Coloco APIs",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -9,8 +9,15 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "svelte": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "npx svelte-package",
     "test": "jest",
     "lint": "eslint src --ext .ts",
     "clean": "rimraf dist"
@@ -33,5 +40,12 @@
   "dependencies": {
     "@hey-api/client-fetch": "^0.8.2",
     "@hey-api/openapi-ts": "^0.64.8"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.3.10",
+    "@tsconfig/svelte": "^5.0.4"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
   }
 }

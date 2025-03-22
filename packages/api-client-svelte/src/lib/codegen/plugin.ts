@@ -65,7 +65,7 @@ export const handler: Plugin.Handler<Config> = ({ context, plugin }) => {
         `import { ${plugin.paramStyle === "flat" ? 'apiCallFlat' : 'apiCallRest'} } from "@coloco/api-client-svelte";\n\n` +
         operations.map(operation => plugin.paramStyle === "flat" ? 
             `export const ${functionName(operation)} = apiCallFlat(${baseFunctionName(operation)}, ${JSON.stringify(mappingsByOperation[operation])});\n` : 
-            `export const ${functionName(operation)} = apiCallRest(${baseFunctionName(operation)}));\n`
+            `export const ${functionName(operation)} = apiCallRest(${baseFunctionName(operation)});\n`
         ).join('')
       );
     }
