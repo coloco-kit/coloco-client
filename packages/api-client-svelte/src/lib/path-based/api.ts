@@ -54,3 +54,9 @@ export function apiCallFlat<A, R>(
     return call({ client: options?.client || defaultClient?.restClient, ...restData });
   }
 }
+
+
+// Types needed to make the apiCallFlat recognized by vscode
+// TODO: Figure out how to make typescript happy and not need these
+export type APIResultType<A, R> = (data?: CombineParams<A>) => R
+export type APIArgumentTypes<T extends (...args: any) => any> = Parameters<T>;

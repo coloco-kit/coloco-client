@@ -62,9 +62,11 @@ export const handler: Plugin.Handler<Config> = ({ context, plugin }) => {
       fs.writeFileSync(
         outputPath,
         `import { ${operations.map(baseFunctionName).join(', ')} } from "${importRelative}/sdk.gen";\n` +
-        `import { ${plugin.paramStyle === "flat" ? 'apiCallFlat' : 'apiCallRest'} } from "@coloco/api-client-svelte";\n\n` +
+        `import { ${plugin.paramStyle === "flat" ? 'apiCallFlat, type APIResultType, type APIArgumentTypes' : 'apiCallRest'} } from "@coloco/api-client-svelte";\n\n` +
         operations.map(operation => plugin.paramStyle === "flat" ? 
-            `export const ${functionName(operation)} = apiCallFlat(${baseFunctionName(operation)}, ${JSON.stringify(mappingsByOperation[operation])});\n` : 
+            // TODO: Figure out how to make typescript happy and not need these
+            `export const ${functionName(operation)}: APIResultType<APIArgumentTypes<typeof ${baseFunctionName(operation)}>[0], ReturnType<typeof ${baseFunctionName(operation)}>> = apiCallFlat(${baseFunctionName(operation)} as any, ${JSON.stringify(mappingsByOperation[operation])}) as any;\n` : 
+            // `export const ${functionName(operation)} = apiCallFlat(${baseFunctionName(operation)}, ${JSON.stringify(mappingsByOperation[operation])});\n` : 
             `export const ${functionName(operation)} = apiCallRest(${baseFunctionName(operation)});\n`
         ).join('')
       );
