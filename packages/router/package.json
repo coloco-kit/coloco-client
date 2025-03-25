@@ -1,6 +1,6 @@
 {
   "name": "@coloco/router",
-  "version": "0.1.5",
+  "version": "0.1.14",
   "description": "A routing library for Coloco applications",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -26,10 +26,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/channelcat/coloco-client.git",
+    "url": "git+https://github.com/channelcat/coloco-client.git",
     "directory": "packages/router"
   },
   "dependencies": {
-    "@mateothegreat/svelte5-router": "^2.2.7"
+    "@mateothegreat/svelte5-router": "^2.14.0"
   }
 }

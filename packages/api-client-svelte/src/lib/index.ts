@@ -1,3 +1,3 @@
-export { apiCallFlat, apiCallRest, type APICallOptions } from './api';
-export { defineConfig as codegenConfig } from './codegen/config';
-export { makeClient, setDefaultClient, type ClientOptions, type ClientCallOptions } from './client.svelte';
+export { apiCallFlat, apiCallRest, type APICallOptions } from './client-based/api';
+export { defineConfig as codegenConfig } from './client-based/codegen/config';
+export { defineClient, makeRequest, type ClientOptions, type ClientCallOptions } from './client-based/client.svelte';

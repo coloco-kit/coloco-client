@@ -3,7 +3,7 @@
  */
 
 // @ts-ignore
-import type { Route } from "@mateothegreat/svelte5-router";
+import type { RouteConfig } from "@mateothegreat/svelte5-router";
 
 function getRoutesFromModules(modules: Record<string, any>) {
   const routes = [];
@@ -35,7 +35,7 @@ function getRoutes({
 }: {
   index: PathType,
   notFound: PathType
-}): Route[] {
+}): RouteConfig[] {
   // path join
   // @ts-ignore
   const modules: Record<string, any> = import.meta.glob(
@@ -60,7 +60,11 @@ function getRoutes({
     ...getRoutesFromModules(modules),
   ];
 }
+export function queryString<T>(key: string, defaultValue: T = null as T): string | T {
+  const result = new URLSearchParams(window.location.search).get(key);
+  return result === null ? defaultValue : result;
+};
 
 // @ts-ignore
-export { route, Router, type Route } from "@mateothegreat/svelte5-router";
+export { goto, Query, route, Router, type Route, type RouteResult } from "@mateothegreat/svelte5-router";
 export { getRoutes }; 
